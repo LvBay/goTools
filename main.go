@@ -1,4 +1,4 @@
-package main
+package parseForm
 
 import (
 	"errors"
@@ -17,31 +17,6 @@ type Input struct {
 
 type Change struct {
 	Cname string
-}
-
-func main() {
-	// test1
-	var info, check Input
-	var vs url.Values
-	vs = url.Values{"code": []string{"10"}, "Name": []string{"zz"}}
-	parseForm(vs, &info)
-	check = Input{Id: 10, Name: "zz"}
-	if check == info {
-		fmt.Println("test 1 success")
-	} else {
-		fmt.Println(info)
-	}
-
-	// test2
-	vs = url.Values{"code": []string{"10"}, "Name": []string{"zz"}, "Cname": []string{"cc"}}
-	parseForm(vs, &info)
-	check = Input{Id: 10, Name: "zz", Cg: Change{Cname: "cc"}}
-	if check == info {
-		fmt.Println("test 2 success")
-	} else {
-		fmt.Println(info)
-	}
-
 }
 
 func parseForm(form url.Values, obj interface{}) error {
